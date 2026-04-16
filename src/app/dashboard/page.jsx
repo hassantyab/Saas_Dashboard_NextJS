@@ -1,38 +1,33 @@
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
-import RevenueChart from "@/components/charts/RevenueChart";
-import BarChart from "@/components/charts/BarChart";
-import KPIProgress from "@/components/KPIProgress";
-import Card from "@/components/ui/Card";
+import MetricsGrid from "@/components/dashboard/MetricsGrid";
+import RevenueChart from "@/components/dashboard/RevenueChart";
+import KPISection from "@/components/dashboard/KPISection";
+import AnomalyList from "@/components/dashboard/AnomalyList";
 
 export default function DashboardPage() {
   return (
-    <div className="flex min-h-screen">
+    <div>
       <Sidebar />
+      <Header />
 
-      <div className="flex-1 ml-64">
-        <Header />
+      <main className="ml-64 pt-24 p-8">
+        <h1 className="text-2xl font-semibold mb-6">
+          CRM Analytics & Statistics
+        </h1>
 
-        <main className="p-8 pt-24 space-y-8">
-          <h1 className="text-3xl font-bold">Dashboard</h1>
+        <MetricsGrid />
 
-          <div className="grid grid-cols-4 gap-6">
-            <Card title="Revenue" value="$2.4M" change={12} />
-            <Card title="Users" value="18K" change={5} />
-            <Card title="Conversion" value="3.8%" change={-1.4} />
-            <Card title="Session" value="12m" change={0} />
+        <div className="grid grid-cols-3 gap-6 mt-6">
+          <div className="col-span-2">
+            <RevenueChart />
           </div>
 
-          <RevenueChart />
+          <KPISection />
+        </div>
 
-          <div className="grid grid-cols-3 gap-6">
-            <div className="col-span-2">
-              <BarChart />
-            </div>
-            <KPIProgress />
-          </div>
-        </main>
-      </div>
+        <AnomalyList />
+      </main>
     </div>
   );
 }
